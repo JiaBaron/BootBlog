@@ -77,12 +77,22 @@ h6, .h6 {
 /*
  * Blog name and description
  */
+.ce{
+  width: 200px;
+  height:500px;
+  background-color: red;
+  margin-left:30px;
+  margin-top: 5px;
+  float: left;
+
+}
 .head{
   width: 200px;
   height: 70px;
   background-color: white;
-  margin-left:30px;
+
   margin-top: 5px;
+
 }
 .blog-header {
   padding-top: 20px;
@@ -167,6 +177,7 @@ h6, .h6 {
   margin-top: 20px;
   background-color: #f9f9f9;
   border-top: 1px solid #e5e5e5;
+  clear: both;
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
