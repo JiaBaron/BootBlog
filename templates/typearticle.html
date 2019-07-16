@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block article_lists %}
+   {% if typearts %}
+      {% for article in typearts %}
+
+        <div class="panel panel-info" style="width: 80%;height: auto;float: left;margin-left: 20px;margin-top: 10px">
+              <div class="panel-heading">
+                <h3 class="panel-title"><a href="/detail/&article_id={{ article.id }}">{{ article.title }}</a></h3>
+              </div>
+              <div class="panel-body" style="overflow: hidden;height: 100px;">
+                {{ article.content|safe }}
+              </div>
+              <div class="panel-footer panel-default">
+                  <span>{{ article.times|safe}}</span>&nbsp;&nbsp;&nbsp;&nbsp;|
+                  <span>阅读数{{ article.read_count|safe}}</span>&nbsp;&nbsp;&nbsp;&nbsp;|
+                  <span>评论数{{ article.comment_count |safe }}</span>
+              </div>
+        </div>
+       {% endfor %}
+   {% else %}
+           <div style="width: 80%;height: 50px;float: left;margin-left: 20px;margin-top: 100px ;text-align: center;line-height: 50px">
+               <h1>小主很懒，什么都没留下~~~</h1>
+           </div>
+
+   {% endif %}
+
+
+{% endblock %}

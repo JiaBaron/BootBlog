@@ -26,10 +26,15 @@
         </div>
     </form>
     <p>最新评论</p>
+    {% if mess %}
     {% for message in mess %}
-    <div class="comment" style="width: 100%;height: auto;background-color: white;margin-top: 5px;padding-left: 30px">
-        {{ message.message }}
+    <div class="comment" style="width:100%;height: auto;background-color: white;margin-top: 5px;padding-left: 30px;margin-bottom: 20px">
+        <p style="width: 50%;height: auto;float: left;background-color: white;">{{ message.message }}</p>
+        <p style="width: 50%;height: auto;float: left;background-color: white;">{{ message.times }}</p>
     </div>
    {% endfor %}
+   {% else %}
+    <p style="width:100%;height: auto;float: left;text-align: center">还没有评论诶，客官，留下足迹吧~~~~~~</p>
+ {% endif %}
 </div>
 {% endblock %}

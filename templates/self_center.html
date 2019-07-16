@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block article_lists %}
+   <div style="width: 80%;height: 230px;float: left;margin-left: 20px;margin-top: 10px;background-color: white">
+          <p style="width: 100%;height: 50px ;margin-left: 30px;line-height: 50px;font-size: large">1.本人暖男一枚，热爱编程。</p>
+          <p style="width: 100%;height: 50px ;margin-left: 30px;line-height: 50px;font-size: large">2.热爱学习，渴求新知识，学习能力强。</p>
+          <p style="width: 100%;height: 50px ;margin-left: 30px;line-height: 50px;font-size: large">3.业余时间喜欢游泳。</p>
+          <p style="width: 100%;height: 50px ;margin-left: 30px;line-height: 50px;font-size: large">4.本博客是本人独立完成，持续完善中。</p>
+   </div>
+    <div style="width: 80%;height: 235px;float: left;margin-left: 20px;margin-top: 10px;background-color: white" id="jia">
+        <div style="width: 80px;height: 235px;font-size: 42px;text-align: center;margin-left: 30px;float: left">
+            加个好友
+        </div>
+        <div style="width: 235px;height: 235px;font-size: 42px;text-align: center;margin-left: 30px;float: left;" >
+            <img src="../static/images/ll.jpg" alt="" width="235px" height="235px" hidden>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+     $(document).ready(function () {
+         $('#jia').click(function () {
+             $('img').show(3000);
+         })
+     })
+
+    </script>
+
+{% endblock %}

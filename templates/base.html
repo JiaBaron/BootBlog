@@ -36,7 +36,8 @@
 {#    {% block heads %}#}
         <div class="blog-masthead" style="height: 100px;margin-top: 30px">
             <nav class="blog-nav" >
-              <h2 style="line-height: 100px;margin-left:30px">砌玉成璧的博客</h2>
+              <h2 style="line-height: 100px;margin-left:30px"><a href="/" style="color: black">砌玉成璧的博客</a></h2>
+
             </nav>
 
         </div>
@@ -45,7 +46,7 @@
         <div class="head">
             <div id="img">
             </div>
-            <p style="float: left;margin-left: 20px">砌玉成璧</p>
+            <p style="float: left;margin-left: 20px"><a href="/self_center/">砌玉成璧</a></p>
         </div>
         <div class="js" style="margin-top: 80px;height: 70px;">
             <p style="width: 100px;height: 35px;float: left;text-align: center;line-height: 35px">文章数量</p>
@@ -59,7 +60,7 @@
                 <p style="width: auto;height:30px;float: left ;margin-left: 20px;line-height: 30px">文章分类</p>
             </div>
             {% for types ,count in type_list.items %}
-            <div style="width: 130px;height: 30px;float: left;margin-left:30px">{{ types }}</div>
+            <div style="width: 130px;height: 30px;float: left;margin-left:30px;"><a href="/typearticle/&artictype={{ types }}">{{ types }}</a></div>
             <div style="width: 30px;height: 30px;float: left;margin-right: 10px">{{ count }}篇</div>
             {% endfor %}
         </div>
@@ -70,7 +71,7 @@
             </div>
             {% for titles ,art_xq in popular_article.items %}
                 {% for count ,id in art_xq.items %}
-            <div style="width: 170px;height: 30px;margin-left:30px;line-height: 30px"><a href="/detail/&article_id={{ id }}">{{ titles }}</a></div>
+            <div style="width: 170px;height: 30px;margin-left:30px;line-height: 30px;"><a href="/detail/&article_id={{ id }}">{{ titles }}</a></div>
 
             <div style="width:100px;height: 30px;margin-left: 30px;font-size: small;color: #9d9d9d;">阅读量 &nbsp;&nbsp;{{ count }}</div>
                 {% endfor %}
@@ -117,3 +118,6 @@
 
 </body>
         </html>
+{% block script %}
+
+{% endblock %}

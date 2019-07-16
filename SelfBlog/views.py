@@ -39,10 +39,19 @@ def detail(request,id):
         message.article=article
         message.save()
         # print(mes)
-    mess=Message.objects.filter(article_id=article_id)
+    mess=Message.objects.filter(article_id=article_id).order_by('-times')[:3]
     message_counts=Message.objects.filter(article_id=article_id).count()
     article.comment_count=message_counts
     article.read_count=read_count+1
     article.save()
 
     return render(request,'detail.html',{'article':article,'mess':mess,'message_counts':message_counts})
+
+def typearticle(request,types):
+    type_id=Types.objects.filter(types=types)
+    # print(type_id)
+    typearts=Article.objects.filter(types=type_id)
+    return render(request,'typearticle.html',{'typearts':typearts})
+
+def self_center(request):
+    return render(request,'self_center.html')

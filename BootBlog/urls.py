@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'ckeditor/', include('ckeditor_uploader.urls')),
     url('^$',base),
     url(r'^detail/&article_id=(\w+)',detail),
+    url(r'^typearticle/&artictype=(\w+)',typearticle),
+    url(r'^self_center/',self_center),
 ]
