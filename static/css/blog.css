@@ -78,10 +78,10 @@ h6, .h6 {
  * Blog name and description
  */
 .ce{
-  width: 200px;
-  height:500px;
-  /*background-color: red;*/
-  margin-left:30px;
+  width: 15%;
+  height:auto;
+  background-color: red;
+  margin-left:2%;
   margin-top: 5px;
   float: left;
 
@@ -200,4 +200,7 @@ h6, .h6 {
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
+}
+a{
+  text-decoration: none;
 }

@@ -11,7 +11,7 @@ class Article(models.Model):
     read_count=models.IntegerField(default=0,verbose_name='阅读数')
     comment_count=models.IntegerField(default=0,verbose_name='评论数')
     times=models.DateTimeField(auto_now_add=True)
-    types=models.ForeignKey('Types')
+    types=models.ForeignKey('Types',on_delete=True)
     def __str__(self):
         return self.title
 
@@ -22,7 +22,7 @@ class Types(models.Model):
 
 class Message(models.Model):
     message=RichTextField(verbose_name='评论')
-    article=models.ForeignKey('Article')
+    article=models.ForeignKey('Article',on_delete=True)
     times=models.DateTimeField(auto_now_add=True,verbose_name='评论时间')
     def __str__(self):
         return self.message

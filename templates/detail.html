@@ -15,16 +15,18 @@
     <div class="con" style="width: 100%;height: auto;background-color: white;margin-top: 5px">
         <span>{{ article.content|safe }}</span>
     </div>
-    <form action="" method="post">
+    <form action="" method="post" id="form" >
         {% csrf_token %}
         <div class="input-group">
               <span class="input-group-addon">评论</span>
               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="message">
         </div>
-        <div style="text-align: right">
-         <input type="submit" value="发表评论" >
+        <div style="text-align: right;">
+            <span style="color:red">{{ wo }}</span>
+         <input type="submit" value="发表评论" id="submit">
         </div>
     </form>
+
     <p>最新评论</p>
     {% if mess %}
     {% for message in mess %}
@@ -37,4 +39,10 @@
     <p style="width:100%;height: auto;float: left;text-align: center">还没有评论诶，客官，留下足迹吧~~~~~~</p>
  {% endif %}
 </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+
+</script>
 {% endblock %}

@@ -33,23 +33,30 @@ def detail(request,id):
     article=Article.objects.get(id=article_id)
     read_count=article.read_count
     message=Message()
+    wo=''
     if request.method=='POST':
+
         mes=request.POST.get('message')
-        message.message=mes
-        message.article=article
-        message.save()
+        if mes:
+            message.message=mes
+            message.article=article
+            message.save()
+            wo='提交成功！'
         # print(mes)
+        else:
+            wo='请输入评论内容！'
+
     mess=Message.objects.filter(article_id=article_id).order_by('-times')[:3]
     message_counts=Message.objects.filter(article_id=article_id).count()
     article.comment_count=message_counts
     article.read_count=read_count+1
     article.save()
 
-    return render(request,'detail.html',{'article':article,'mess':mess,'message_counts':message_counts})
+    return render(request,'detail.html',{'article':article,'mess':mess,'message_counts':message_counts,'wo':wo})
 
 def typearticle(request,types):
-    type_id=Types.objects.filter(types=types)
-    # print(type_id)
+    type_id=Types.objects.filter(types=types).values()[0]['id']
+    print(type_id)
     typearts=Article.objects.filter(types=type_id)
     return render(request,'typearticle.html',{'typearts':typearts})
 
