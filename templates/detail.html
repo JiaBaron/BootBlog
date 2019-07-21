@@ -14,16 +14,17 @@
     </div>
     <div class="con" style="width: 100%;height: auto;background-color: white;margin-top: 5px">
         <span>{{ article.content|safe }}</span>
+        <span id="idd" hidden>{{ article.id }}</span>
     </div>
-    <form action="" method="post" id="form" >
+    <form action="/messages/" method="post" id="form" >
         {% csrf_token %}
         <div class="input-group">
               <span class="input-group-addon">评论</span>
-              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="message">
+              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="ddd">
         </div>
         <div style="text-align: right;">
             <span style="color:red">{{ wo }}</span>
-         <input type="submit" value="发表评论" id="submit">
+         <input type="button" value="发表评论" id="submit" onclick="submitt()">
         </div>
     </form>
 
@@ -43,6 +44,28 @@
 
 {% block script %}
 <script type="text/javascript">
+  {#$(document).ready(function () {#}
+  {#    console.log('111');#}
+      function submitt() {
+
+          var article_id=$('#idd').html();
+          console.log(article_id);
+          var comm=$('#ddd').val();
+          console.log(comm);
+          data={'comm':comm,'article_id':article_id};
+          $.ajax({
+              type:'POST',
+              url:'/messages/',
+              data:data,
+              dataType:'json',
+              success:function (data) {
+                  console.log('fuckkk')
+              }
+          });
+          $('#submit').attr('disabled',true)
+      }
+
+
 
 </script>
 {% endblock %}
