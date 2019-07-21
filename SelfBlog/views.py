@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from SelfBlog.models import *
 
 # Create your views here.
@@ -32,19 +32,19 @@ def detail(request,id):
     article_id=int(id)
     article=Article.objects.get(id=article_id)
     read_count=article.read_count
-    message=Message()
-    wo=''
-    if request.method=='POST':
-
-        mes=request.POST.get('message')
-        if mes:
-            message.message=mes
-            message.article=article
-            message.save()
-            wo='提交成功！'
-        # print(mes)
-        else:
-            wo='请输入评论内容！'
+    # message=Message()
+    # wo=''
+    # if request.method=='POST':
+    #
+    #     mes=request.POST.get('message')
+    #     if mes:
+    #         message.message=mes
+    #         message.article=article
+    #         message.save()
+    #         wo='提交成功！'
+    #     # print(mes)
+    #     else:
+    #         wo='请输入评论内容！'
 
     mess=Message.objects.filter(article_id=article_id).order_by('-times')[:3]
     message_counts=Message.objects.filter(article_id=article_id).count()
@@ -52,7 +52,26 @@ def detail(request,id):
     article.read_count=read_count+1
     article.save()
 
-    return render(request,'detail.html',{'article':article,'mess':mess,'message_counts':message_counts,'wo':wo})
+    return render(request,'detail.html',{'article':article,'mess':mess,'message_counts':message_counts})
+def messages(request):
+    wo = ''
+    if request.is_ajax():
+        message=Message()
+        data = request.POST
+        print(data)
+        mes=request.POST.get('comm')
+        article_id=request.POST.get('article_id')
+        articles=Article.objects.get(id=article_id)
+        if mes:
+            message.message = mes
+            message.article = articles
+            message.save()
+            wo = '提交成功！'
+        # print(mes)
+        else:
+            wo = '请输入评论内容！'
+    return redirect('/detail/&article_id='+article_id+'/',{'wo':wo})
+
 
 def typearticle(request,types):
     type_id=Types.objects.filter(types=types).values()[0]['id']
