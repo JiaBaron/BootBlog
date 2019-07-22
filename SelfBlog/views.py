@@ -54,7 +54,6 @@ def detail(request,id):
 
     return render(request,'detail.html',{'article':article,'mess':mess,'message_counts':message_counts})
 def messages(request):
-    wo = ''
     if request.is_ajax():
         message=Message()
         data = request.POST
@@ -66,11 +65,7 @@ def messages(request):
             message.message = mes
             message.article = articles
             message.save()
-            wo = '提交成功！'
-        # print(mes)
-        else:
-            wo = '请输入评论内容！'
-    return redirect('/detail/&article_id='+article_id+'/',{'wo':wo})
+    return redirect('/detail/&article_id='+article_id+'/')
 
 
 def typearticle(request,types):
