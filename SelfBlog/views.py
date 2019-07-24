@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from SelfBlog.models import *
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -53,6 +54,7 @@ def detail(request,id):
     article.save()
 
     return render(request,'detail.html',{'article':article,'mess':mess,'message_counts':message_counts})
+@csrf_exempt
 def messages(request):
     if request.is_ajax():
         message=Message()
@@ -65,7 +67,7 @@ def messages(request):
             message.message = mes
             message.article = articles
             message.save()
-    return redirect('/detail/&article_id='+article_id+'/')
+        return redirect('/detail/&article_id='+article_id+'/')
 
 
 def typearticle(request,types):
